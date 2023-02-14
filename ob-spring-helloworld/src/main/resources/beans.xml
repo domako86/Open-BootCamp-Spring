@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Podemos modificar el alcance de un bean añadiendo el parámetro "scope" con 2 opciones:
+        #Singleton: Para reutilizar el mismo objeto siempre (Por defecto en Spring)
+        #Prototype: Para crear una nuevo cada vez (En nuestro ejemplo el constructor se ejecutaría varias veces en vez de una) -->
+    <bean id="calculadora" class="org.example.Calculadora"></bean>
+
+
+    <!--Cuando una clase depende de otra hay que crear el bean de forma distinta-->
+
+    <bean id="gestorFacturas" class="org.example.GestorFacturas">
+        <!--argumentos del constructor, hay que poner referencia en vez de value cuando nos referimos a otro bean-->
+        <constructor-arg name="calculadora" ref="calculadora"/>
+        <constructor-arg name="nombre" value="Facturator 3000"/>
+    </bean>
+
+
+</beans>
